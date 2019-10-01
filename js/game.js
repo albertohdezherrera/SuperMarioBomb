@@ -9,6 +9,9 @@ class Game {
     this.bombs = []
 
     this.tick = 0
+
+    this._setListeners()
+
   }
 
   start() {
@@ -20,7 +23,7 @@ class Game {
       this._clear()
       this._draw()
       this._move()
-      this._checkCollisions()
+      this._inFloor()
       this._addBomb()
 
       if (this.tick++ > 10000) {
@@ -29,15 +32,22 @@ class Game {
     }, FPS)
   }
 
-  _addBomb() {
-    if (this.tick % 400) return 
-
-    this.bombs.push(
-      new Bomb(this.ctx)
-    )
+  _setListeners() {
+    document.onkeypress = e => this.bombs.forEach(b => {
+      const success = b.checkLetter(e.key.toUpperCase())
+      
+      if(success) {
+        console.log('Sucess')
+      }
+    })
   }
 
-  _checkCollisions() {
+  _addBomb() {
+    if (this.tick % 400) return
+    this.bombs.push(new Bomb(this.ctx))
+  }
+
+  _inFloor() {
     this.bombs.forEach((b) => {
       if (b.y + b.h > this.ctx.canvas.height - FLOORHEIGHT) {
         this._gameOver()
