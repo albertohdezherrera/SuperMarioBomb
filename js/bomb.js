@@ -28,14 +28,17 @@ class Bomb {
   }
 
   _randomLetter() {
-    const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    const abc = 'QWEASDZXC'
     return abc[Math.floor(Math.random() * abc.length)]
   }
 
   checkLetter(key) {
+    //key === this.letter ? true :  false
     if(key === this.letter) {
       this.vy = 0
       return true
+    } else {
+      return false
     }
   }
 }

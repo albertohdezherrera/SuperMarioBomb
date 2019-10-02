@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Super Mario World';
+  src: url('fonts/Super-Mario-World.woff2') format('woff2'),
+      url('fonts/Super-Mario-World.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -7,7 +15,6 @@ body {
   padding-top: 10px;
 }
 canvas {
-  border: 1px solid black;
   display: block;
   margin: 0 auto;
   height: 100%;
