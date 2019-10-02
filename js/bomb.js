@@ -1,14 +1,12 @@
 class Bomb {
-  constructor(ctx) {
+  constructor(ctx, y) {
     this.ctx = ctx
     this.h = 60
     this.w = 60
     this.x = Math.random() * (this.ctx.canvas.width - this.w)
     this.y = this.h * - 1
     this.letter = this._randomLetter()
-
-    //Quiero que esto sea variable en el tiempo.
-    this.vy = 1
+    this.vy = y
   }
 
   draw() {

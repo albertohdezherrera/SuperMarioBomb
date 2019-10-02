@@ -1,8 +1,8 @@
 class Explosion {
   constructor(ctx, x, y) {
     this.ctx = ctx
-    this.w = 100
-    this.h = 100
+    this.w = 120
+    this.h = 120
     this.x = x
     this.y = y
     this.finishAnimate = false
@@ -12,6 +12,12 @@ class Explosion {
     this.img.src = 'img/explosion.png'
     this.img.frames = 9
     this.img.frameIndex = 0
+
+    //SOUND
+    this.fire = new Audio('sounds/fire.mp3')
+    this.fire.loop = false
+    this.fire.volume = 0.2;
+    this.fire.play();
   }
 
   animate() {
@@ -29,9 +35,10 @@ class Explosion {
 
     this._frames()
   }
+
   _frames() {
     this.tick++
-    if(this.tick > 2) {
+    if(this.tick > 3) {
       this.tick = 0
       this.img.frameIndex++
     }
