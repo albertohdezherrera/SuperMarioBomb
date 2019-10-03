@@ -6,6 +6,7 @@ const game = new Game(ctx)
 //Intro creation
 document.addEventListener("DOMContentLoaded", function() {
   const introBlock =  document.getElementById('intro')
+
   introBlock.style.width = `${canvas.width}px` 
   introBlock.style.top = `${canvas.offsetTop}px` 
   introBlock.style.left = `${canvas.offsetLeft}px` 

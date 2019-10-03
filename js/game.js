@@ -8,23 +8,39 @@ class Game {
     this.build = new Builds(ctx)
     this.scoreTable = new Score(ctx)
     this.npc = new Npc(ctx) 
+    this.pause = new Pause(ctx)
 
     this.bombs = []
-    this.explosion= [] 
+    this.explosion = [] 
+    this.combos = [] 
     this.score = 0
     this.tick = 1
+    this.isPaused = false
     this._setListeners()
+
+    this.canvasOffsetLeft = this.ctx.canvas.offsetLeft
+    this.canvasOffsetTop = this.ctx.canvas.offsetTop
+
 
     //Sounds
     this.audioMain = new Audio('sounds/main.mp3')
-    this.audioMain.loop = true;
-    this.audioMain.volume = 0.2;
     this.audioOver = new Audio('sounds/gameOver.wav')
+    this.audioPause = new Audio('sounds/pause.wav')
+    this.audioCombo = new Audio('sounds/combo.wav')
+
+    this.audioMain.loop = true
+    this.audioMain.volume = 0.2
+    this.audioCombo.volume = 0.5
+
   }
 
   start() {
     this._runAnimationLoop()
     this.audioMain.play()
+    if (this.isPaused) {
+      this.isPaused = !this.isPaused
+      this.audioPause.play()
+    }
   }
 
   _runAnimationLoop() {
@@ -43,6 +59,22 @@ class Game {
 
   _setListeners() {
     document.onkeypress = e => this._deleteElement(e.key)
+
+    this.ctx.canvas.onclick = e => {
+      const xVal = e.pageX - this.canvasOffsetLeft
+      const yVal = e.pageY - this.canvasOffsetTop
+
+      if (xVal > this.ctx.canvas.width - this.pause.w - 10 && 
+          xVal < this.ctx.canvas.width - 10 &&
+          yVal > 10 && 
+          yVal < 40 ) {
+            if (this.isPaused) {
+              this.start()
+            } else {
+              this._pause()
+            }
+      }
+    }
   }
 
   _inFloor() {
@@ -65,6 +97,8 @@ class Game {
       if(elToDelete.length < 2) {
         this.score++
       } else {
+        this.combos.push(new Combo(this.ctx, elToDelete.length))
+        this.audioCombo.play();
         this.score += elToDelete.length
       }
       this.bombs.splice(this.bombs.indexOf(b), 1)
@@ -83,6 +117,8 @@ class Game {
     this.explosion.forEach(e => e.animate())
     this.bombs.forEach(b => b.draw())
     this.npc.draw()
+    this.combos.forEach(e => e.animate())
+    this.pause.draw()
   }
   
   _move() {
@@ -102,6 +138,13 @@ class Game {
       this.ctx.canvas.width / 2,
       this.ctx.canvas.height / 2
     );
+  }
+
+  _pause() {
+    clearInterval(this.intervalId)
+    this.isPaused = true
+    this.audioPause.play()
+    this.audioMain.pause()
   }
 
   _addBomb(vel) {
