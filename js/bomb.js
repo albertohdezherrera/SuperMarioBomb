@@ -1,15 +1,15 @@
 class Bomb {
   constructor(ctx, y) {
     this.ctx = ctx
-    this.h = 100
-    this.w = 100
+    this.h = 120
+    this.w = 120
     this.x = Math.random() * (this.ctx.canvas.width - this.w)
     this.y = this.h * - 1
     this.letter = this._randomLetter()
     this.vy = y
 
     this.img = new Image()
-    this.img.src = 'img/bomb.png'
+    this.img.src = `img/bomb${this.letter}.png`
     this.img.frames = 14
     this.img.frameIndex = 0
 
@@ -30,13 +30,6 @@ class Bomb {
     );
 
     this._frames()
-
-    this.ctx.textAlign = "center"
-    this.ctx.fillText(
-      this.letter,
-      this.x + this.w / 2,
-      this.y + this.h / 2
-    );
   }
 
   _frames() {

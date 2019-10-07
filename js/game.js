@@ -18,6 +18,8 @@ class Game {
     this.isPaused = false
     this._setListeners()
 
+    this.canPowerUp = true
+
     this.canvasOffsetLeft = this.ctx.canvas.offsetLeft
     this.canvasOffsetTop = this.ctx.canvas.offsetTop
 
@@ -43,6 +45,14 @@ class Game {
     }
   }
 
+  _reset() {
+    this.bombs = []
+    this.explosion = [] 
+    this.combos = [] 
+    this.score = 0
+    this.tick = 1
+    this.start() 
+  }
   _runAnimationLoop() {
     this.intervalId = setInterval(() => {
       this._clear()
@@ -119,6 +129,7 @@ class Game {
     this.npc.draw()
     this.combos.forEach(e => e.animate())
     this.pause.draw()
+    this._powerUpChance()
   }
   
   _move() {
@@ -149,6 +160,18 @@ class Game {
 
   _addBomb(vel) {
     this.bombs.push(new Bomb(this.ctx, vel))
+  }
+
+  _powerUpChance() {
+    if (this.score === 0) return
+    if (this.score % 10 === 0 && this.canPowerUp) {
+      this.canPowerUp = false
+      const posibility = 3
+      const randomNum = Math.floor((Math.random() * 3) + 1)
+      if (randomNum === posibility) {
+        console.log('tienes powerup')
+      }
+    }
   }
 
   _difficulty() {
