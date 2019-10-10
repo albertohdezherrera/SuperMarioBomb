@@ -27,7 +27,7 @@ class Bomb {
       this.y,
       this.w,
       this.h
-    );
+    )
 
     this._frames()
   }

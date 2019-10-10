@@ -9,17 +9,45 @@ class Npc {
     this.vx = 1.5
     this.ay = 1
     this.vy = 0
+    this.tick = 0
+
+    //IMG
+    this.img = new Image()
+    this.img.src = 'img/explosion.png'
+    this.img.frames = 9
+    this.img.frameIndex = 0
 
     //SOUND
     this.jumpSound = new Audio('sounds/jump.wav')
     this.jumpSound.loop = false
-    this.jumpSound.volume = 0.3;
+    this.jumpSound.volume = 0.3
   }
 
   draw() {
-    this.ctx.beginPath()
-    this.ctx.rect(this.x, this.y, this.w, this.h)
-    this.ctx.stroke()
+    this.ctx.drawImage(
+      this.img,
+      this.img.frameIndex * this.img.width / this.img.frames,
+      0,
+      this.img.width / this.img.frames,
+      this.img.height,
+      this.x,
+      this.y,
+      this.w,
+      this.h
+    )
+
+    this._frames()
+  }
+
+  _frames() {
+    this.tick++
+    if(this.tick > 4) {
+      this.tick = 0
+      this.img.frameIndex++
+    }
+    if (this.img.frameIndex >= this.img.frames) {
+      this.img.frameIndex = 0
+    }
   }
 
   move() {
@@ -37,7 +65,7 @@ class Npc {
   jump() {
     if (!this._isJumping()) {
       this.y -= 50
-      this.jumpSound.play();
+      this.jumpSound.play()
     }
   }
 

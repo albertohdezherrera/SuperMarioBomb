@@ -108,7 +108,7 @@ class Game {
         this.score++
       } else {
         this.combos.push(new Combo(this.ctx, elToDelete.length))
-        this.audioCombo.play();
+        this.audioCombo.play()
         this.score += elToDelete.length
       }
       this.bombs.splice(this.bombs.indexOf(b), 1)
@@ -142,13 +142,13 @@ class Game {
     clearInterval(this.intervalId)
     this.audioMain.pause()
     this.audioOver.play()
-    this.ctx.font = "40px Super Mario World";
-    this.ctx.textAlign = "center";
+    this.ctx.font = "40px Super Mario World"
+    this.ctx.textAlign = "center"
     this.ctx.fillText(
       "GAME OVER",
       this.ctx.canvas.width / 2,
       this.ctx.canvas.height / 2
-    );
+    )
   }
 
   _pause() {
@@ -168,6 +168,7 @@ class Game {
       this.canPowerUp = false
       const posibility = 3
       const randomNum = Math.floor((Math.random() * 3) + 1)
+      console.log(randomNum)
       if (randomNum === posibility) {
         console.log('tienes powerup')
       }

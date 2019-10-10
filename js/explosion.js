@@ -16,8 +16,8 @@ class Explosion {
     //SOUND
     this.fire = new Audio('sounds/fire.mp3')
     this.fire.loop = false
-    this.fire.volume = 0.1;
-    this.fire.play();
+    this.fire.volume = 0.1
+    this.fire.play()
   }
 
   animate() {
@@ -31,7 +31,7 @@ class Explosion {
       this.y,
       this.w,
       this.h
-    );
+    )
 
     this._frames()
   }

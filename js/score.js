@@ -15,7 +15,7 @@ class Score {
       score,
       this.ctx.canvas.width / 2,
       this.ctx.canvas.height * 0.1
-    );
+    )
   }
 
 }
