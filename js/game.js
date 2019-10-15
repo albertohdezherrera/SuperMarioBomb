@@ -63,6 +63,8 @@ class Game {
     this.audioMain.currentTime = 0
     this.npc = new Npc(ctx)
     this.audioMain.playbackRate = 1
+    this.canPowerUp = true
+    this.PowerUp = false
     this.start()
   }
   _runAnimationLoop() {
