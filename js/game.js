@@ -177,7 +177,7 @@ class Game {
     this.audioOver.play()
 
     this.ctx.beginPath()
-    this.ctx.fillStyle = "rgba(0, 0, 0, 0.5)"
+    this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)"
     this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
     this.ctx.stroke()
     this.ctx.font = "20px Super Mario World"
@@ -230,7 +230,7 @@ class Game {
     if (this.score % 10 === 0 && this.canPowerUp) {
       this.canPowerUp = false
       const posibility = 2
-      let randomNum = Math.floor((Math.random() * 8) + 1)
+      let randomNum = Math.floor((Math.random() * 6) + 1)
       console.log(randomNum)
       if (randomNum === posibility) {
         this.PowerUp = true
