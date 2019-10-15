@@ -31,6 +31,7 @@ canvas {
   align-content: center;
   justify-content: center;
   align-self: center;
+  background-image: url(img/fondo.jpg);
 }
 #intro .content {
   align-self: center;
@@ -38,7 +39,7 @@ canvas {
   text-align: center;
 }
 #intro .content img {
-  width: 65%;
+  width: 80%;
   display: block;
   margin: 0 auto;
 }
@@ -49,6 +50,20 @@ canvas {
 }
 #intro .content button {
   margin: 40px 0;
+  margin-top: 80px;
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: 'Super Mario World';
+  color: #fff;
+  background: none;
+  border: 3px solid #fff;
+  line-height: 101%;
+  padding: 15px 30px;
+  text-transform: uppercase;
+  font-size: 20px;
+  padding-bottom: 12px;
+  border-radius: 11px;
+  cursor: pointer;
 }
 #intro .border.border-t-b::after,
 #intro .border.border-t-b::before {
