@@ -88,7 +88,7 @@ class Npc {
 
   _frames() {
     this.tick++
-    if(this.tick > 5) {
+    if(this.tick > 4) {
       this.tick = 0
       this.imgWalk.frameIndex++
       this.imgWalkR.frameIndex++

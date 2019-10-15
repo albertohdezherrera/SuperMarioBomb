@@ -1,8 +1,8 @@
 class PowerUp {
   constructor(ctx) {
     this.ctx = ctx
-    this.w = 50
-    this.h = 50
+    this.w = 40
+    this.h = 40
     this.x = 10
     this.y = 10
     this.tick = 0

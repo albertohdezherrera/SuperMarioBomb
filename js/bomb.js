@@ -9,7 +9,11 @@ class Bomb {
     this.vy = y
 
     this.img = new Image()
-    this.img.src = `img/bomb${this.letter}.png`
+    if (Math.floor((Math.random() * 20) + 1) === 1) {
+      this.img.src = `img/bombRandom.png`
+    } else {
+      this.img.src = `img/bomb${this.letter}.png`
+    }
     this.img.frames = 14
     this.img.frameIndex = 0
 
